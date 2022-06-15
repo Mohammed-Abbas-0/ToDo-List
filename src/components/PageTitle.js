@@ -1,12 +1,9 @@
-import React from 'react';
-import styles from '../styles/modules/title.module.scss';
+import TitleStyle from '../styles/modules/title.module.scss';
 
-function PageTitle({ children, ...rest }) {
+export default function pageTitle( {children, ...rest} ) {
   return (
-    <p className={styles.title} {...rest}>
-      {children}
-    </p>
-  );
+    <div className={TitleStyle.title} {...rest}>        
+        <p> {children.toUpperCase()} </p>
+    </div>
+  )
 }
-
-export default PageTitle;

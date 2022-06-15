@@ -1,5 +1,5 @@
 @mixin smallDeviceSize {
-	@media only screen and (max-width: 768px) {
-		@content;
-	}
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
 }

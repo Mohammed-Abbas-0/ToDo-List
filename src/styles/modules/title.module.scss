@@ -1,17 +1,15 @@
-@import '../mixins';
+@import "../mixins";
+
 .title {
-	display: inline-block;
-	width: 100%;
-	font-family: 'Poppins';
-	font-size: 4rem;
-	font-weight: 700;
-	text-transform: uppercase;
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 2rem;
-	margin-bottom: 1.5rem;
-	color: var(--black-1);
-	@include smallDeviceSize {
-		font-size: 3rem;
-	}
+  display: inline-block;
+  width: 100%;
+  font-family: "Poppins";
+  margin: 2rem auto 1.5rem auto; // t r b l
+  text-align: center;
+  font-weight: 800;
+  font-size: 4rem; // Root 10px (10*4)
+  color: var(--black-1);
+  @include smallDeviceSize {
+    font-size: 3rem;
+  }
 }

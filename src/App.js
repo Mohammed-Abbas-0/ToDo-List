@@ -1,29 +1,28 @@
 import React from 'react';
-import { Toaster } from 'react-hot-toast';
-import AppContent from './components/AppContent';
 import AppHeader from './components/AppHeader';
 import PageTitle from './components/PageTitle';
-import styles from './styles/modules/app.module.scss';
+import TasksContent from './components/TasksContent';
+import './styles/GlobalStyles.css';
+import AppStyle from'./styles/modules/app.module.scss';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <>
-      <div className="container">
-        <PageTitle>TODO List</PageTitle>
-        <div className={styles.app__wrapper}>
-          <AppHeader />
-          <AppContent />
-        </div>
-      </div>
+    <main className="container">
+      <PageTitle> Todo List </PageTitle>
+      <section className={AppStyle.app__wrapper}>
+        <AppHeader/>
+        <TasksContent/>        
+      </section>
       <Toaster
-        position="bottom-right"
-        toastOptions={{
-          style: {
-            fontSize: '1.4rem',
-          },
-        }}
+      position='bottom-right'
+      toastOptions={{
+        style: {
+          fontSize:'1.4rem'
+        }
+      }}
       />
-    </>
+    </main>
   );
 }
 
