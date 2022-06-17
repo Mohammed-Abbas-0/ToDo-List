@@ -1,9 +1,8 @@
 import TitleStyle from '../styles/modules/title.module.scss';
-
-export default function pageTitle( {children, ...rest} ) {
+export default function PageTitle({children,...rest}) {
   return (
-    <div className={TitleStyle.title} {...rest}>        
-        <p> {children.toUpperCase()} </p>
-    </div>
+    <header className={TitleStyle.title} {...rest}>
+      <h2 > {children.toUpperCase()} </h2>
+    </header>
   )
 }

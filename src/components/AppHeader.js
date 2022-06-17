@@ -4,15 +4,14 @@ import TodoModal from './TodoModal';
 import { useState } from 'react';
 
 
-export default function AppHeader() {
-    const [modalOpen,setModalOpen] = useState(true);
 
+export default function AppHeader() {
+    const [modalOpen,setModalOpen] = useState(false);
+    
     return (
-        <div>
             <section className={AppStyle.appHeader}>
-                <Button 
-                variant='primary'
-                onClick={()=>setModalOpen(true)}
+                <Button                     
+                    onClick={()=>setModalOpen(true)}
                 > Add New Task </Button>
                 <SelectButton id="status">
                     <option value='all'> All </option>
@@ -21,6 +20,5 @@ export default function AppHeader() {
                 </SelectButton>
                 <TodoModal modalOpen={modalOpen} setModalOpen={setModalOpen}/>
             </section>
-        </div>
     )
 }

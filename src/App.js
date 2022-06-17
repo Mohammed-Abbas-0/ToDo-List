@@ -9,17 +9,17 @@ import { Toaster } from 'react-hot-toast';
 function App() {
   return (
     <main className="container">
-      <PageTitle> Todo List </PageTitle>
+      <PageTitle id="as"> Todo List </PageTitle>
       <section className={AppStyle.app__wrapper}>
         <AppHeader/>
         <TasksContent/>        
       </section>
       <Toaster
-      position='bottom-right'
-      toastOptions={{
-        style: {
-          fontSize:'1.4rem'
-        }
+        position='bottom-right'
+        toastOptions={{
+          style: {
+            fontSize:'1.4rem'
+          }
       }}
       />
     </main>
