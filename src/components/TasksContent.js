@@ -4,8 +4,12 @@ import TodoItem from "./TodoItem";
 export default function TasksContent() {
   const todoList = useSelector(state => state.todo.todoList);
   const SortedTodoList = [...todoList];
+  // Sorted Todo by Date(Time) 
   SortedTodoList.sort((a,b) => {
-    new Date(b.time) - new Date(a.time)
+    const A_todo  = new Date(a.time),
+          B_todo  = new Date(b.time);
+    return A_todo - B_todo;    
+    
   });
   return (
     <section>

@@ -48,7 +48,8 @@ export default function TodoItem({todo}) {
                 onClick={()=> handleDelete()}
                 onKeyDown={()=> handleDelete()}
                 role="button"
-                tabIndex={0}>
+                tabIndex={0}
+                >
                 <MdDelete />
             </div>
         </section>
