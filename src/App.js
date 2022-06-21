@@ -5,6 +5,7 @@ import TasksContent from './components/TasksContent';
 import './styles/GlobalStyles.css';
 import AppStyle from'./styles/modules/app.module.scss';
 import { Toaster } from 'react-hot-toast';
+import FooterInfoTodo from './components/FooterInfoTodo';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <section className={AppStyle.app__wrapper}>
         <AppHeader/>
         <TasksContent/>        
+        <FooterInfoTodo/>
       </section>
       <Toaster
         position='bottom-right'

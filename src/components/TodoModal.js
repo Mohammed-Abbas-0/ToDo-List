@@ -1,12 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Button from "./Button"
 import { MdOutlineClose } from 'react-icons/md'
 import ModalStyle from '../styles/modules/modal.module.scss'
 import { useDispatch } from "react-redux";
 import {v4 as uuid} from 'uuid';
-import { addTodo } from "../slices/todoSlices";
+import { addTodo,updateTodo } from "../slices/todoSlices";
 import toast from 'react-hot-toast';
-export default function TodoModal({modalOpen,setModalOpen})
+// type -> "Add/Update"
+// todo -> Value Of Title && status
+export default function TodoModal({type,modalOpen,setModalOpen, todo})
 {
     const [title,setTitle]      = useState('');
     const [status,setStatus]    = useState('Incomplete');
@@ -16,18 +18,45 @@ export default function TodoModal({modalOpen,setModalOpen})
         e.preventDefault();
         if(title && status)
         {
-            dispatch(addTodo({
-                id:uuid(),
-                title,
-                status,
-                time:new Date().toLocaleString()
-            }));
-            setModalOpen(false);
-            setTitle("");
-            toast.success('Task Added Successfully :)');
+            if(type === "add")
+            {
+                dispatch(addTodo({
+                    id:uuid(),
+                    title,
+                    status,
+                    time:new Date().toLocaleString()
+                }));
+                setModalOpen(false);
+                setTitle("");
+                toast.success('Task Added Successfully :)');
+            }
+            if(type === "update") {
+                if(todo.title !== title || todo.status !== status)
+                {                    
+                    dispatch(updateTodo({
+                        ...todo,
+                        title,
+                        status
+                    }));
+                    setModalOpen(false);
+                    toast.success('Task Updated Successfully :)');
+                }
+                else toast.error('Task Not Update!');
+            }
         }
         else toast.error('Task shouldn`t be empty :(');
     }
+
+    useEffect(()=>{
+        if(type === 'update' && todo)
+        {
+            setTitle(todo.title);
+            setStatus(todo.status);
+        }else{
+            setTitle("");
+            setStatus("Incomplete");
+        }
+    },[modalOpen])
     
     return(
         modalOpen && ( 
@@ -45,7 +74,8 @@ export default function TodoModal({modalOpen,setModalOpen})
             <form className={ModalStyle.form}
              onSubmit={e => handleSubmit(e)}
              >
-                <h3 className={ModalStyle.formTitle}>Add Task</h3>
+                <h3 className={ModalStyle.formTitle}>
+                    { type === "update" ? "Update" : "Add"} Task</h3>
                 <label htmlFor='title'>
                     Title
                     <input 
@@ -68,7 +98,9 @@ export default function TodoModal({modalOpen,setModalOpen})
                     </select>
                 </label>
                 <footer className={ModalStyle.buttonContainer}>
-                    <Button type='submit'> Add Task </Button>
+                    <Button type='submit'> 
+                        {type === "update" ? "Update" : "Add"} Task 
+                    </Button>
                     <Button
                         onClick={()=>setModalOpen(false)}
                         onKeyDown={()=>setModalOpen(false)}
